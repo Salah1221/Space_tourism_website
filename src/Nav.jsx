@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Logo from "./assets/shared/logo.svg";
 import { Link } from "react-router-dom";
 
@@ -6,10 +6,14 @@ const Nav = () => {
   const [isClicked, SetIsClicked] = useState(false);
   const [areClicked, setAreClicked] = useState([true, false, false, false]);
 
+  const linkRef = useRef([1, 2, 3, 4]);
+
   const handleClick = (index) => {
     let aux = [false, false, false, false];
     aux[index] = true;
     setAreClicked(aux);
+    linkRef.current[index].click();
+    SetIsClicked(false);
   };
 
   return (
@@ -57,38 +61,50 @@ const Nav = () => {
           id="primary-navigation"
           className="primary-navigation underline-indicators flex ff-sans-cond bg-blur"
         >
-          <li className={"active".repeat(areClicked[0])}>
+          <li
+            className={"active".repeat(areClicked[0])}
+            onClick={() => handleClick(0)}
+          >
             <Link
               to="/"
               className="uppercase text-white letter-spacing-2"
-              onClick={() => handleClick(0)}
+              ref={(el) => (linkRef.current[0] = el)}
             >
               <span aria-hidden="true">00</span>Home
             </Link>
           </li>
-          <li className={"active".repeat(areClicked[1])}>
+          <li
+            className={"active".repeat(areClicked[1])}
+            onClick={() => handleClick(1)}
+          >
             <Link
               to="destination"
               className="uppercase text-white letter-spacing-2"
-              onClick={() => handleClick(1)}
+              ref={(el) => (linkRef.current[1] = el)}
             >
               <span aria-hidden="true">01</span>Destination
             </Link>
           </li>
-          <li className={"active".repeat(areClicked[2])}>
+          <li
+            className={"active".repeat(areClicked[2])}
+            onClick={() => handleClick(2)}
+          >
             <Link
               to="crew"
               className="uppercase text-white letter-spacing-2"
-              onClick={() => handleClick(2)}
+              ref={(el) => (linkRef.current[2] = el)}
             >
               <span aria-hidden="true">02</span>Crew
             </Link>
           </li>
-          <li className={"active".repeat(areClicked[3])}>
+          <li
+            className={"active".repeat(areClicked[3])}
+            onClick={() => handleClick(3)}
+          >
             <Link
               to="technology"
               className="uppercase text-white letter-spacing-2"
-              onClick={() => handleClick(3)}
+              ref={(el) => (linkRef.current[3] = el)}
             >
               <span aria-hidden="true">03</span>Technology
             </Link>

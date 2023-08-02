@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const Technology = ({ setBackgroundClass }) => {
-  setBackgroundClass("technology");
+  useEffect(() => {
+    setBackgroundClass("technology");
+  });
   return (
     <>
       <div></div>

@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const Home = ({ setBackgroundClass }) => {
-  setBackgroundClass("home");
+  useEffect(() => {
+    setBackgroundClass("home");
+  });
   return (
     <>
       <a className="skip-to-content" href="#main">

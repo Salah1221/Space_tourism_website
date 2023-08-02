@@ -387,7 +387,7 @@ p {
   font-weight: 700;
 }
 .underline-indicators > * {
-  /* cursor: pointer; */
+  cursor: pointer;
   border: 0;
   position: relative;
   padding: var(--indicator-gap, 1rem) 0;
@@ -438,19 +438,19 @@ p {
     transform: translateX(100%);
     transition: transform 0.5s;
   }
-  .underline-indicators > *::before {
+  .primary-navigation.underline-indicators > *::before {
     width: 3px;
     inset: 0 0 auto auto;
     height: 100%;
     transform: scaleY(0);
   }
-  .underline-indicators > *:hover::before,
-  .underline-indicators > *:focus::before {
+  .primary-navigation.underline-indicators > *:hover::before,
+  .primary-navigation.underline-indicators > *:focus::before {
     transform: scaleY(1);
   }
 
-  .underline-indicators > .active::before,
-  .underline-indicators > [aria-selected="true"]::before {
+  .primary-navigation.underline-indicators > .active::before,
+  .primary-navigation.underline-indicators > [aria-selected="true"]::before {
     transform: scaleY(1);
   }
   .mobile-nav-toggle {

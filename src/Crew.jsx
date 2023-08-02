@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const Crew = ({ setBackgroundClass }) => {
-  setBackgroundClass("crew");
+  useEffect(() => {
+    setBackgroundClass("crew");
+  });
   return (
     <>
       <div></div>
