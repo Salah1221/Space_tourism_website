@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import Nav from "./Nav";
+import Home from "./Home";
+import { Routes, Route } from "react-router-dom";
+import Destination from "./Destination";
+import Crew from "./Crew";
+import Technology from "./Technology";
 
 const App = () => {
   const [data, setData] = useState({});
+  const [backgroundClass, setBackgroundClass] = useState("home");
 
   useEffect(() => {
     fetch("./src/data.json")
@@ -11,30 +17,31 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app home">
-      <Nav></Nav>
-      <div className="grid-container grid-container--home">
-        <div className="grid-center">
-          <h1 className="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1 grid">
-            So, you want to travel to
-            <span className="fs-900 ff-serif text-white">Space</span>
-          </h1>
-          <p>
-            Let’s face it; if you want to go to space, you might as well
-            genuinely go to outer space and not hover kind of on the edge of it.
-            Well sit back, and relax because we’ll give you a truly out of this
-            world experience!
-          </p>
-        </div>
-        <div>
-          <a
-            href="#"
-            className="large-button uppercase ff-serif text-dark bg-white fs-600"
-          >
-            Explore
-          </a>
-        </div>
-      </div>
+    <div className={"app " + backgroundClass}>
+      <Nav />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home setBackgroundClass={setBackgroundClass} />}
+        />
+        <Route
+          path="destination"
+          element={
+            <Destination
+              setBackgroundClass={setBackgroundClass}
+              destinations={data.destinations}
+            />
+          }
+        />
+        <Route
+          path="crew"
+          element={<Crew setBackgroundClass={setBackgroundClass} />}
+        />
+        <Route
+          path="technology"
+          element={<Technology setBackgroundClass={setBackgroundClass} />}
+        />
+      </Routes>
     </div>
   );
 };

@@ -8,7 +8,7 @@
   --clr-white: 0 0% 100%;
 
   /* font-sizes */
-  --fs-900: 5rem;
+  --fs-900: clamp(5rem, 15vw, 9.375rem);
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
   --fs-600: 1.25rem;
@@ -26,7 +26,6 @@
 @media (min-width: 35rem) {
   :root {
     /* font-sizes */
-    --fs-900: 9.375rem;
     --fs-800: 5rem;
     --fs-700: 2.5rem;
     --fs-600: 1.5rem;
@@ -143,9 +142,15 @@ p {
   gap: var(--gap, 1rem);
 }
 
-.grid-center {
+.lg-grid-center {
   display: grid;
   justify-items: center;
+}
+
+@media (min-width: 50rem) {
+  .lg-grid-center {
+    justify-items: start;
+  }
 }
 
 .d-block {
@@ -204,6 +209,19 @@ p {
   border: 0;
 }
 
+.skip-to-content {
+  position: absolute;
+  padding: 0.5em 1em;
+  background-color: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+
+.skip-to-content:focus {
+  transform: none;
+}
+
 .flow > *:where(:not(:first-child)) {
   margin-top: var(--flow-space, 1.5rem);
 }
@@ -259,6 +277,9 @@ p {
 }
 .letter-spacing-3 {
   letter-spacing: 2.35px;
+}
+.no-letter-spacing {
+  letter-spacing: initial;
 }
 
 .uppercase {
@@ -366,7 +387,7 @@ p {
   font-weight: 700;
 }
 .underline-indicators > * {
-  cursor: pointer;
+  /* cursor: pointer; */
   border: 0;
   position: relative;
   padding: var(--indicator-gap, 1rem) 0;
@@ -571,17 +592,54 @@ p {
   background-size: cover;
   background-position: bottom center;
 }
-/* home */
+
 .home {
   background-image: url("./assets/home/background-home-mobile.jpg");
 }
+
+.destination {
+  background-image: url("./assets/destination/background-destination-mobile.jpg");
+}
+
+.crew {
+  background-image: url("./assets/crew/background-crew-mobile.jpg");
+}
+
+.technology {
+  background-image: url("./assets/technology/background-technology-mobile.jpg");
+}
+
 @media (min-width: 35rem) {
   .home {
     background-image: url("./assets/home/background-home-tablet.jpg");
+  }
+
+  .destination {
+    background-image: url("./assets/destination/background-destination-tablet.jpg");
+  }
+
+  .crew {
+    background-image: url("./assets/crew/background-crew-tablet.jpg");
+  }
+
+  .technology {
+    background-image: url("./assets/technology/background-technology-tablet.jpg");
   }
 }
 @media (min-width: 50rem) {
   .home {
     background-image: url("./assets/home/background-home-desktop.jpg");
+  }
+
+  .destination {
+    background-image: url("./assets/destination/background-destination-desktop.jpg");
+  }
+
+  .crew {
+    background-image: url("./assets/crew/background-crew-desktop.jpg");
+  }
+
+  .technology {
+    background-image: url("./assets/technology/background-technology-desktop.jpg");
   }
 }

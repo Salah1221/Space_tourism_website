@@ -1,8 +1,16 @@
 import { useState } from "react";
 import Logo from "./assets/shared/logo.svg";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isClicked, SetIsClicked] = useState(false);
+  const [areClicked, setAreClicked] = useState([true, false, false, false]);
+
+  const handleClick = (index) => {
+    let aux = [false, false, false, false];
+    aux[index] = true;
+    setAreClicked(aux);
+  };
 
   return (
     <header className="primary-header flex">
@@ -49,25 +57,41 @@ const Nav = () => {
           id="primary-navigation"
           className="primary-navigation underline-indicators flex ff-sans-cond bg-blur"
         >
-          <li className="active">
-            <a href="#" className="uppercase text-white letter-spacing-2">
-              <span>00</span>Home
-            </a>
+          <li className={"active".repeat(areClicked[0])}>
+            <Link
+              to="/"
+              className="uppercase text-white letter-spacing-2"
+              onClick={() => handleClick(0)}
+            >
+              <span aria-hidden="true">00</span>Home
+            </Link>
           </li>
-          <li>
-            <a href="#" className="uppercase text-white letter-spacing-2">
-              <span>01</span>Destination
-            </a>
+          <li className={"active".repeat(areClicked[1])}>
+            <Link
+              to="destination"
+              className="uppercase text-white letter-spacing-2"
+              onClick={() => handleClick(1)}
+            >
+              <span aria-hidden="true">01</span>Destination
+            </Link>
           </li>
-          <li>
-            <a href="#" className="uppercase text-white letter-spacing-2">
-              <span>02</span>Crew
-            </a>
+          <li className={"active".repeat(areClicked[2])}>
+            <Link
+              to="crew"
+              className="uppercase text-white letter-spacing-2"
+              onClick={() => handleClick(2)}
+            >
+              <span aria-hidden="true">02</span>Crew
+            </Link>
           </li>
-          <li>
-            <a href="#" className="uppercase text-white letter-spacing-2">
-              <span>03</span>Technology
-            </a>
+          <li className={"active".repeat(areClicked[3])}>
+            <Link
+              to="technology"
+              className="uppercase text-white letter-spacing-2"
+              onClick={() => handleClick(3)}
+            >
+              <span aria-hidden="true">03</span>Technology
+            </Link>
           </li>
         </ul>
       </nav>
