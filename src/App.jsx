@@ -1,20 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Nav from "./Nav";
 import Home from "./Home";
 import { Routes, Route } from "react-router-dom";
 import Destination from "./Destination";
 import Crew from "./Crew";
 import Technology from "./Technology";
+import data from "./data.json";
 
 const App = () => {
-  const [data, setData] = useState({});
   const [backgroundClass, setBackgroundClass] = useState("home");
-
-  useEffect(() => {
-    fetch("./src/data.json")
-      .then((response) => response.json())
-      .then((result) => setData(result));
-  }, []);
 
   return (
     <div className={"app " + backgroundClass}>

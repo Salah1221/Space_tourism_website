@@ -1,12 +1,13 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "./assets/shared/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
+  const location = useLocation();
   const [isClicked, SetIsClicked] = useState(false);
   const [areClicked, setAreClicked] = useState([true, false, false, false]);
 
-  const linkRef = useRef([1, 2, 3, 4]);
+  const linkRef = useRef([]);
 
   const handleClick = (index) => {
     let aux = [false, false, false, false];
@@ -15,6 +16,23 @@ const Nav = () => {
     linkRef.current[index].click();
     SetIsClicked(false);
   };
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        handleClick(0);
+        break;
+      case "/destination":
+        handleClick(1);
+        break;
+      case "/crew":
+        handleClick(2);
+        break;
+      case "/technology":
+        handleClick(3);
+        break;
+    }
+  }, []);
 
   return (
     <header className="primary-header flex">
