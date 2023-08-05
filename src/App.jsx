@@ -29,7 +29,9 @@ const App = () => {
         />
         <Route
           path="crew"
-          element={<Crew setBackgroundClass={setBackgroundClass} />}
+          element={
+            <Crew setBackgroundClass={setBackgroundClass} crew={data.crew} />
+          }
         />
         <Route
           path="technology"

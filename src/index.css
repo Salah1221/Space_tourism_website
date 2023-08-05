@@ -11,7 +11,7 @@
   --fs-900: clamp(5rem, 15vw, 9.375rem);
   --fs-800: 3.5rem;
   --fs-700: 1.5rem;
-  --fs-600: 1.25rem;
+  --fs-600: 1rem;
   --fs-500: 1rem;
   --fs-400: 0.9375rem;
   --fs-300: 1rem;
@@ -79,7 +79,7 @@ body {
   font-size: var(--fs-400);
   color: hsl(var(--clr-white));
   background-color: hsl(var(--clr-dark));
-  line-height: 1.5;
+  line-height: 1.75;
   overflow-x: hidden;
 }
 
@@ -526,12 +526,16 @@ p {
   color: hsl(var(--clr-white));
 }
 
+.dot-indicators {
+  --gap: 1.5rem;
+}
+
 .dot-indicators > * {
   cursor: pointer;
   border: 0;
   border-radius: 50%;
-  height: 1rem;
-  width: 1rem;
+  aspect-ratio: 1;
+  width: 0.938rem;
   background-color: hsl(var(--clr-white) / 0.25);
   transition: background-color 0.3s;
 }
@@ -544,6 +548,16 @@ p {
 .dot-indicators > [aria-selected="true"] {
   background-color: hsl(var(--clr-white) / 1);
 }
+
+@media (max-width: 50rem) {
+  .dot-indicators {
+    --gap: 1rem;
+  }
+  .dot-indicators > * {
+    width: 0.625rem;
+  }
+}
+
 .num-btns > * {
   width: 2.5em;
   aspect-ratio: 1;
@@ -633,7 +647,7 @@ p {
   padding-bottom: 2rem;
 }
 
-.grid-container p:not([class]) {
+.grid-container p {
   max-width: var(--max-width, 49ch);
 }
 
@@ -676,13 +690,61 @@ p {
   font-size: 1.75rem;
 }
 
+/* crew */
+
+.grid-container--crew {
+  grid-template-areas:
+    "title"
+    "image"
+    "indicator"
+    "content";
+}
+
+.grid-container--crew .dot-indicators {
+  grid-area: indicator;
+}
+
+.grid-container--crew .bio {
+  grid-area: content;
+  --flow-space: 1rem;
+}
+
+.crew-image {
+  width: 100%;
+  border-bottom: 1px solid hsl(var(--clr-white) / 0.25);
+  grid-area: image;
+  display: grid;
+  justify-content: center;
+}
+
+.crew-image img {
+  width: clamp(11rem, 50vw, 35.5rem);
+}
+
+.role {
+  color: hsl(var(--clr-white) / 0.5);
+}
+
 @media (min-width: 35rem) {
+  .grid-container--crew {
+    grid-template-areas:
+      "title"
+      "content"
+      "indicator"
+      "image";
+    padding-bottom: 0;
+    padding-inline: 2.5rem;
+  }
+  .crew-image {
+    border: 0;
+    align-self: end;
+  }
   .numbered-title {
     justify-self: start;
     margin-top: 2rem;
   }
   .grid-container--destination {
-    padding-inline: 2rem;
+    padding-inline: 2.5rem;
   }
   .time-and-distance {
     flex-direction: row;
@@ -715,6 +777,8 @@ p {
 
   .numbered-title {
     margin-top: auto;
+    align-self: start;
+    height: 100%;
   }
   .grid-container--destination {
     justify-items: start;
@@ -736,6 +800,38 @@ p {
   .time-and-distance {
     justify-content: flex-start;
     --gap: min(8vw, 6rem);
+  }
+
+  .grid-container--crew {
+    grid-template-areas:
+      "... title image ..."
+      "... content image ..."
+      "... indicator image ...";
+    grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0, 32rem)) minmax(
+        2em,
+        1fr
+      );
+  }
+
+  .grid-container--crew .bio {
+    justify-self: start;
+    align-self: start;
+  }
+
+  .crew-image {
+    margin: 0;
+    justify-self: end;
+    width: auto;
+  }
+
+  .crew-image img {
+    align-self: end;
+    width: 100%;
+  }
+
+  .grid-container--crew .dot-indicators {
+    justify-self: start;
+    align-self: start;
   }
 }
 
