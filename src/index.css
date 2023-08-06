@@ -38,7 +38,7 @@
   :root {
     /* font-sizes */
     --fs-800: 6.25rem;
-    --fs-700: 3.5rem;
+    --fs-700: clamp(2.5rem, 3vw, 3.5rem);
     --fs-600: 2rem;
     --fs-500: 1.75rem;
     --fs-400: 1.125rem;
@@ -81,6 +81,12 @@ body {
   background-color: hsl(var(--clr-dark));
   line-height: 1.75;
   overflow-x: hidden;
+}
+
+@media (max-width: 35rem) {
+  body {
+    line-height: 1.6;
+  }
 }
 
 .app {
@@ -194,13 +200,13 @@ p {
   transform: none;
 }
 
-.flow > *:where(:not(:first-child)) {
+.flow > * + * {
   margin-top: var(--flow-space, 1.5rem);
 }
+
 /* 
   OR:
-  .flow > * + * { ... }
-  But it is hard to understand at first glance
+  .flow > *:where(:not(:first-child)) { ... }
  */
 
 /* colors */
@@ -559,7 +565,7 @@ p {
 }
 
 .num-btns > * {
-  width: 2.5em;
+  width: 2.35em;
   aspect-ratio: 1;
   border: 1px solid hsl(var(--clr-white) / 0.25);
   border-radius: 50%;
@@ -725,7 +731,41 @@ p {
   color: hsl(var(--clr-white) / 0.5);
 }
 
+/* technology */
+
+.grid-container--technology {
+  grid-template-areas:
+    "title"
+    "image"
+    "content";
+  padding-inline: 0;
+}
+
+.grid-container--technology > *:not(img) {
+  padding-inline: 1.5rem;
+}
+
+.grid-container--technology > img {
+  grid-area: image;
+}
+
+.grid-container--technology .content {
+  grid-area: content;
+  flex-direction: column;
+  align-items: center;
+  gap: max(1.5rem, 4vh);
+}
+
 @media (min-width: 35rem) {
+  .grid-container--technology {
+    --flow-space: 2.75rem;
+  }
+  .grid-container--technology > *:not(img) {
+    padding-inline: 2.5rem;
+  }
+  .grid-container--technology img {
+    width: 100%;
+  }
   .grid-container--crew {
     grid-template-areas:
       "title"
@@ -833,10 +873,43 @@ p {
     justify-self: start;
     align-self: start;
   }
+
+  .grid-container--technology {
+    grid-template-areas:
+      "... title title ..."
+      "... content image image"
+      "... ... ... ...";
+    grid-template-columns: minmax(2em, 1fr) minmax(0, 43rem) minmax(0, 26rem) minmax(
+        2em,
+        1fr
+      );
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .grid-container--technology .num-btns {
+    flex-direction: column;
+  }
+
+  .grid-container--technology .content {
+    flex-direction: row;
+    gap: 2rem;
+    justify-self: start;
+    margin: 0;
+  }
+
+  .grid-container--technology img {
+    margin: 0;
+  }
 }
 
 @media (max-width: 75rem) {
   .grid-container--destination img {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 80rem) {
+  .grid-container--technology .content {
+    gap: 5rem;
   }
 }

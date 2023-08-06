@@ -35,7 +35,12 @@ const App = () => {
         />
         <Route
           path="technology"
-          element={<Technology setBackgroundClass={setBackgroundClass} />}
+          element={
+            <Technology
+              setBackgroundClass={setBackgroundClass}
+              technology={data.technology}
+            />
+          }
         />
       </Routes>
     </div>
