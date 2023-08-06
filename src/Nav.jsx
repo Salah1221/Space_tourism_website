@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Logo from "./assets/shared/logo.svg";
+import Logo from "/assets/shared/logo.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
