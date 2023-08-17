@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-const Crew = ({ setBackgroundClass, crew }) => {
+const Crew = ({ setBackgroundClass, crew, isLight }) => {
   const [ind, setInd] = useState(0);
 
   useEffect(() => {
@@ -13,30 +13,15 @@ const Crew = ({ setBackgroundClass, crew }) => {
         <span aria-hidden="true">02</span> meet your crew
       </h1>
       <div className="dot-indicators flex">
-        <button
-          aria-selected={ind === 0 ? "true" : "false"}
-          onClick={() => setInd(0)}
-        >
-          <span className="sr-only">The {crew[0].role}</span>
-        </button>
-        <button
-          aria-selected={ind === 1 ? "true" : "false"}
-          onClick={() => setInd(1)}
-        >
-          <span className="sr-only">The {crew[1].role}</span>
-        </button>
-        <button
-          aria-selected={ind === 2 ? "true" : "false"}
-          onClick={() => setInd(2)}
-        >
-          <span className="sr-only">The {crew[2].role}</span>
-        </button>
-        <button
-          aria-selected={ind === 3 ? "true" : "false"}
-          onClick={() => setInd(3)}
-        >
-          <span className="sr-only">The {crew[3].role}</span>
-        </button>
+        {crew.map((member, i) => (
+          <button
+            aria-selected={ind === i ? "true" : "false"}
+            onClick={() => setInd(i)}
+            key={i}
+          >
+            <span className="sr-only">The {member.role}</span>
+          </button>
+        ))}
       </div>
       <article className="bio grid">
         <h2
@@ -49,7 +34,10 @@ const Crew = ({ setBackgroundClass, crew }) => {
         <p className="text-accent">{crew[ind].bio}</p>
       </article>
       <div className="crew-image">
-        <img src={crew[ind].images.webp} alt={crew[ind].name} />
+        <img
+          src={isLight ? crew[ind].images.light : crew[ind].images.webp}
+          alt={crew[ind].name}
+        />
       </div>
     </main>
   );
@@ -58,6 +46,7 @@ const Crew = ({ setBackgroundClass, crew }) => {
 Crew.propTypes = {
   setBackgroundClass: PropTypes.func,
   crew: PropTypes.array,
+  isLight: PropTypes.bool,
 };
 
 export default Crew;

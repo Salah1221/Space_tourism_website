@@ -9,10 +9,11 @@ import data from "./data.json";
 
 const App = () => {
   const [backgroundClass, setBackgroundClass] = useState("home");
+  const [isLight, setIsLight] = useState(true);
 
   return (
-    <div className={"app " + backgroundClass}>
-      <Nav />
+    <div className={(isLight ? "light " : "") + "app " + backgroundClass}>
+      <Nav isLight={isLight} setIsLight={setIsLight} />
       <Routes>
         <Route
           path="/"
@@ -22,6 +23,7 @@ const App = () => {
           path="destination"
           element={
             <Destination
+              isLight={isLight}
               setBackgroundClass={setBackgroundClass}
               destinations={data.destinations}
             />
@@ -30,13 +32,18 @@ const App = () => {
         <Route
           path="crew"
           element={
-            <Crew setBackgroundClass={setBackgroundClass} crew={data.crew} />
+            <Crew
+              isLight={isLight}
+              setBackgroundClass={setBackgroundClass}
+              crew={data.crew}
+            />
           }
         />
         <Route
           path="technology"
           element={
             <Technology
+              isLight={isLight}
               setBackgroundClass={setBackgroundClass}
               technology={data.technology}
             />

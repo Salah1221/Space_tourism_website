@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useEffect, useSyncExternalStore } from "react";
 
-const Technology = ({ setBackgroundClass, technology }) => {
+const Technology = ({ setBackgroundClass, technology, isLight }) => {
   const width = useSyncExternalStore(
     (callback) => {
       window.addEventListener("resize", callback);
@@ -25,10 +25,15 @@ const Technology = ({ setBackgroundClass, technology }) => {
       <img
         src={
           width < 850
-            ? technology[ind].images.landscape
+            ? isLight
+              ? technology[ind].images["landscape-light"]
+              : technology[ind].images.landscape
+            : isLight
+            ? technology[ind].images["portrait-light"]
             : technology[ind].images.portrait
         }
         alt={technology[ind].name}
+        className="tech-img"
       />
       <div className="content flex">
         <div className="num-btns flex fs-600 ff-serif">
@@ -74,6 +79,7 @@ const Technology = ({ setBackgroundClass, technology }) => {
 Technology.propTypes = {
   setBackgroundClass: PropTypes.func,
   technology: PropTypes.array,
+  isLight: PropTypes.bool,
 };
 
 export default Technology;

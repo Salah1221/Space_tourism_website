@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Logo from "/assets/shared/logo.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
@@ -32,12 +31,26 @@ const Nav = () => {
         handleClick(3);
         break;
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <header className="primary-header flex">
-      <div>
-        <img src={Logo} alt="space tourism logo" className="logo" />
+      <div style={{ lineHeight: 1 }}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48"
+          height="48"
+          className="logo"
+        >
+          <g fill="none" fillRule="evenodd">
+            <circle cx="24" cy="24" r="24" fill="#FFF" id="circle" />
+            <path
+              fill="#0B0D17"
+              d="M24 0c0 16-8 24-24 24 15.718.114 23.718 8.114 24 24 0-16 8-24 24-24-16 0-24-8-24-24z"
+              id="star"
+            />
+          </g>
+        </svg>
       </div>
       <button
         className="mobile-nav-toggle"

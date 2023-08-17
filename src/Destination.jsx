@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-const Destination = ({ setBackgroundClass, destinations }) => {
+const Destination = ({ setBackgroundClass, destinations, isLight }) => {
   const [ind, setInd] = useState(0);
   const [clickedTabs, setClickedTabs] = useState([true, false, false, false]);
 
@@ -21,37 +21,26 @@ const Destination = ({ setBackgroundClass, destinations }) => {
       <h1 className="numbered-title">
         <span aria-hidden="true">01</span> pick your destination
       </h1>
-      <img src={destinations[ind].images.webp} alt={destinations[ind].name} />
+      <img
+        src={
+          isLight
+            ? destinations[ind].images.light
+            : destinations[ind].images.webp
+        }
+        alt={destinations[ind].name}
+      />
       <div className="destination-info">
         <div className="tabs underline-indicators flex m-s-justify-center">
-          <button
-            aria-selected={clickedTabs[0] ? "true" : "false"}
-            className="uppercase ff-sans-cond text-accent letter-spacing-2"
-            onClick={() => handleClick(0)}
-          >
-            Moon
-          </button>
-          <button
-            aria-selected={clickedTabs[1] ? "true" : "false"}
-            className="uppercase ff-sans-cond text-accent letter-spacing-2"
-            onClick={() => handleClick(1)}
-          >
-            Mars
-          </button>
-          <button
-            aria-selected={clickedTabs[2] ? "true" : "false"}
-            className="uppercase ff-sans-cond text-accent letter-spacing-2"
-            onClick={() => handleClick(2)}
-          >
-            Europa
-          </button>
-          <button
-            aria-selected={clickedTabs[3] ? "true" : "false"}
-            className="uppercase ff-sans-cond text-accent letter-spacing-2"
-            onClick={() => handleClick(3)}
-          >
-            Titan
-          </button>
+          {destinations.map((destination, i) => (
+            <button
+              aria-selected={clickedTabs[i] ? "true" : "false"}
+              className="uppercase ff-sans-cond text-accent letter-spacing-2"
+              onClick={() => handleClick(i)}
+              key={i}
+            >
+              {destination.name}
+            </button>
+          ))}
         </div>
         <h2 className="fs-800 ff-serif uppercase">{destinations[ind].name}</h2>
         <p className="text-accent">{destinations[ind].description}</p>
@@ -77,6 +66,7 @@ const Destination = ({ setBackgroundClass, destinations }) => {
 Destination.propTypes = {
   setBackgroundClass: PropTypes.func,
   destinations: PropTypes.array,
+  isLight: PropTypes.bool,
 };
 
 export default Destination;
