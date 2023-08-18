@@ -37,6 +37,7 @@ const Crew = ({ setBackgroundClass, crew, isLight }) => {
         <img
           src={isLight ? crew[ind].images.light : crew[ind].images.webp}
           alt={crew[ind].name}
+          loading="lazy"
         />
       </div>
     </main>

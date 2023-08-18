@@ -28,6 +28,7 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
             : destinations[ind].images.webp
         }
         alt={destinations[ind].name}
+        loading="lazy"
       />
       <div className="destination-info">
         <div className="tabs underline-indicators flex m-s-justify-center">

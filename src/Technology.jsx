@@ -34,6 +34,7 @@ const Technology = ({ setBackgroundClass, technology, isLight }) => {
         }
         alt={technology[ind].name}
         className="tech-img"
+        loading="lazy"
       />
       <div className="content flex">
         <div className="num-btns flex fs-600 ff-serif">
