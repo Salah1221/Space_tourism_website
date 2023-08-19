@@ -370,14 +370,14 @@ p {
   margin-right: 0.5rem;
   font-weight: 700;
 }
-.underline-indicators > * {
+.underline-indicators > *:not(.no-underline) {
   cursor: pointer;
   border: 0;
   position: relative;
   padding: var(--indicator-gap, 1rem) 0;
 }
 
-.underline-indicators > *::before {
+.underline-indicators > *:not(.no-underline)::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -404,6 +404,93 @@ p {
 
 .mobile-nav-toggle {
   display: none;
+}
+
+.theme-toggle {
+  background: none;
+  border: 0;
+  position: absolute;
+  top: 66px;
+  right: 4rem;
+  z-index: 9999999;
+  cursor: pointer;
+}
+
+.theme-toggle .circle {
+  transition: opacity 0.3s;
+}
+
+.theme-toggle #circles {
+  transition: transform 0.3s;
+  transform-origin: center center;
+}
+
+.theme-toggle > svg {
+  aspect-ratio: 1;
+  width: 35px;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+  overflow: visible;
+}
+
+#moon {
+  stroke-dasharray: 75.944 100;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset 0.3s;
+}
+
+#sun-part {
+  stroke-dasharray: 33.753 100;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s;
+}
+
+.theme-toggle.dark > svg {
+  transform: rotate(0deg);
+}
+
+.theme-toggle.dark #sun-part {
+  stroke-dashoffset: 34;
+}
+
+.theme-toggle.dark #moon {
+  stroke-dashoffset: 0;
+}
+
+.theme-toggle:not(.dark):hover #circles {
+  animation: hover_sun 0.3s;
+}
+
+.theme-toggle.dark:hover > svg {
+  animation: shake 0.3s;
+}
+
+.theme-toggle.dark #circles {
+  transform: scale(0);
+}
+
+@keyframes hover_sun {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: none;
+  }
 }
 
 @media (max-width: 35rem) {
@@ -484,6 +571,12 @@ p {
     left: -1px;
     border: 5px dotted hsl(var(--clr-white) / 0.25);
   }
+
+  .theme-toggle {
+    position: absolute;
+    top: 1.4rem;
+    right: 4rem;
+  }
 }
 
 @media (min-width: 35rem) {
@@ -499,6 +592,10 @@ p {
   }
   .primary-navigation a > span {
     display: none;
+  }
+  .theme-toggle {
+    top: 21px;
+    right: 2rem;
   }
 }
 
@@ -524,6 +621,12 @@ p {
     --gap: 3rem;
     margin-block: 2.5rem;
     position: relative;
+  }
+
+  .no-underline {
+    padding: 0;
+    align-self: center;
+    line-height: 1;
   }
 }
 
@@ -551,6 +654,10 @@ p {
 }
 
 .light .mobile-nav-toggle {
+  mix-blend-mode: difference;
+}
+
+.light .theme-toggle {
   mix-blend-mode: difference;
 }
 

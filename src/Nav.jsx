@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Nav = () => {
+const Nav = ({ setIsLight, isLight }) => {
   const location = useLocation();
   const [isClicked, SetIsClicked] = useState(false);
   const [areClicked, setAreClicked] = useState([true, false, false, false]);
@@ -140,10 +141,103 @@ const Nav = () => {
               <span aria-hidden="true">03</span>Technology
             </Link>
           </li>
+          <li className="no-underline"></li>
         </ul>
       </nav>
+      <button
+        className={"theme-toggle " + (!isLight ? "dark" : "")}
+        onClick={() => setIsLight(!isLight)}
+      >
+        <svg
+          width="49"
+          height="49"
+          viewBox="0 0 49 49"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="circles">
+            <circle className="circle" cx="2" cy="24.5" r="2" fill="#D0D6F9" />
+            <circle
+              className="circle"
+              cx="8.5901"
+              cy="8.59009"
+              r="2"
+              transform="rotate(45 8.5901 8.59009)"
+              fill="#D0D6F9"
+            />
+            <circle
+              className="circle"
+              cx="24.5"
+              cy="2"
+              r="2"
+              transform="rotate(90 24.5 2)"
+              fill="#D0D6F9"
+            />
+            <circle
+              className="circle"
+              cx="40.4099"
+              cy="8.59009"
+              r="2"
+              transform="rotate(135 40.4099 8.59009)"
+              fill="#D0D6F9"
+            />
+            <circle
+              className="circle"
+              cx="47"
+              cy="24.5"
+              r="2"
+              transform="rotate(180 47 24.5)"
+              fill="#D0D6F9"
+            />
+            <circle
+              className="circle"
+              cx="40.4099"
+              cy="40.4099"
+              r="2"
+              transform="rotate(-135 40.4099 40.4099)"
+              fill="#D0D6F9"
+            />
+            <circle
+              className="circle"
+              cx="24.5"
+              cy="47"
+              r="2"
+              transform="rotate(-90 24.5 47)"
+              fill="#D0D6F9"
+            />
+            <circle
+              className="circle"
+              cx="8.5901"
+              cy="40.4099"
+              r="2"
+              transform="rotate(-45 8.5901 40.4099)"
+              fill="#D0D6F9"
+            />
+          </g>
+          <path
+            id="sun-part"
+            d="M34.844 31.5203C36.2044 29.5191 37 27.1025 37 24.5C37 17.5963 31.4037 12 24.5 12C22.1819 12 20.0113 12.6312 18.1498 13.7309"
+            stroke="#D0D6F9"
+            strokeWidth="3"
+            strokeMiterlimit="10"
+          />
+          <path
+            id="moon"
+            d="M18.1498 13.7309C16.9961 14.4645 13.866 16.6723 12.5631 20.7793C12.3711 21.3846 12 22.7669 12 24.5C12 31.4037 17.5963 37 24.5 37C28.8012 37 32.5946 34.8277 34.844 31.5203C29.8682 33.4206 24.2123 32.134 20.5586 28.2725C16.8778 24.3829 15.9212 18.6115 18.1498 13.7309Z"
+            stroke="#D0D6F9"
+            strokeWidth="3"
+            strokeMiterlimit="10"
+            strokeLinejoin="bevel"
+          />
+        </svg>
+      </button>
     </header>
   );
+};
+
+Nav.propTypes = {
+  isLight: PropTypes.bool,
+  setIsLight: PropTypes.func,
 };
 
 export default Nav;
