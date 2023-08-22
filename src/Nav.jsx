@@ -36,6 +36,9 @@ const Nav = ({ setIsLight, isLight }) => {
 
   return (
     <header className="primary-header flex">
+      <a className="skip-to-content" href="#main">
+        Skip to content
+      </a>
       <div style={{ lineHeight: 1 }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +148,7 @@ const Nav = ({ setIsLight, isLight }) => {
         </ul>
       </nav>
       <button
-        className={"theme-toggle " + (!isLight ? "dark" : "")}
+        className={"theme-toggle " + (isLight ? "dark" : "")}
         onClick={() => setIsLight(!isLight)}
       >
         <svg

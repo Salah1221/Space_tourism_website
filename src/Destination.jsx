@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Destination = ({ setBackgroundClass, destinations, isLight }) => {
   const [ind, setInd] = useState(0);
@@ -18,19 +19,34 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
 
   return (
     <main className="grid-container grid-container--destination flow">
-      <h1 className="numbered-title">
+      <motion.h1
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        exit={{ y: 30, opacity: 0 }}
+        className="numbered-title"
+      >
         <span aria-hidden="true">01</span> pick your destination
-      </h1>
-      <img
+      </motion.h1>
+      <motion.img
         src={
           isLight
             ? destinations[ind].images.light
             : destinations[ind].images.webp
         }
         alt={destinations[ind].name}
-        loading="lazy"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0, opacity: 0 }}
+        transition={{ duration: 0.5 }}
       />
-      <div className="destination-info">
+      <motion.div
+        className="destination-info"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 30 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="tabs underline-indicators flex m-s-justify-center">
           {destinations.map((destination, i) => (
             <button
@@ -59,7 +75,7 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
             <p className="ff-serif uppercase">{destinations[ind].travel}</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 };
