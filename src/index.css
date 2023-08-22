@@ -38,7 +38,7 @@
   position: absolute;
   inset: 0;
   background-color: hsl(var(--clr-dark));
-  transition: clip-path 0.3s linear;
+  transition: clip-path 0.7s ease;
   clip-path: circle(var(--radius) at var(--center));
 }
 
