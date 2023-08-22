@@ -22,8 +22,10 @@
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
 
-  /* clip-path radius */
-  --radius: 0vw;
+  /* clip-path circle properties */
+  --radius: 0vmax;
+  --center: 50% 50%;
+  will-change: contents;
 }
 
 .light.app {
@@ -38,8 +40,8 @@
   inset: 0;
   background-color: hsl(var(--clr-dark));
   transition: clip-path 0.3s;
-  clip-path: circle(var(--radius) at 50% 50%);
-  transition: clip-path 0.3s ease-out;
+  clip-path: circle(var(--radius) at var(--center));
+  transition: clip-path 0.3s linear;
 }
 
 .grid-container {

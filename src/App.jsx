@@ -53,14 +53,14 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setR(60);
+    setR(100);
     setTimeout(() => setR(0), 1000);
   }, [location.pathname]);
 
   return (
     <div
       className={(isLight ? "light " : "") + "app " + backgroundClass}
-      style={{ "--radius": r + "vw" }}
+      style={{ "--radius": r + "vmax" }}
     >
       <Nav isLight={isLight} setIsLight={setIsLight} />
       <AnimatePresence mode="wait">
