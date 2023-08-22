@@ -12,7 +12,7 @@ const Home = ({ setBackgroundClass }) => {
         className="lg-grid-center"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         exit={{
           y: 20,
           opacity: 0,
@@ -39,10 +39,10 @@ const Home = ({ setBackgroundClass }) => {
           scale: 0,
           opacity: 0,
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <a
-          href="#"
+          to="destination"
           id="main"
           className="large-button uppercase ff-serif text-dark bg-white fs-600"
         >

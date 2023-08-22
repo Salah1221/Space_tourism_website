@@ -25,7 +25,6 @@
   /* clip-path circle properties */
   --radius: 0vmax;
   --center: 50% 50%;
-  will-change: contents;
 }
 
 .light.app {
@@ -39,9 +38,8 @@
   position: absolute;
   inset: 0;
   background-color: hsl(var(--clr-dark));
-  transition: clip-path 0.3s;
-  clip-path: circle(var(--radius) at var(--center));
   transition: clip-path 0.3s linear;
+  clip-path: circle(var(--radius) at var(--center));
 }
 
 .grid-container {
