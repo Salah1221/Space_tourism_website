@@ -25,6 +25,7 @@
   /* clip-path circle properties */
   --radius: 0vmax;
   --center: 50% 50%;
+  --centerY: 50%;
 }
 
 .light.app {
@@ -38,7 +39,7 @@
   position: absolute;
   inset: 0;
   background-color: hsl(var(--clr-dark));
-  transition: clip-path 0.7s ease;
+  transition: clip-path 0.7s;
   clip-path: circle(var(--radius) at var(--center));
 }
 
@@ -594,6 +595,10 @@ p {
     position: absolute;
     top: 1.45rem;
     right: 5rem;
+  }
+
+  .app::before {
+    clip-path: circle(var(--radius) at 100% var(--centerY));
   }
 }
 

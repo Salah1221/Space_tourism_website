@@ -13,6 +13,7 @@ const App = () => {
   const [isLight, setIsLight] = useState(true);
   const [r, setR] = useState(0);
   const [mousePos, setMousePos] = useState([0, 0]);
+  const [flag, setFlag] = useState(true);
 
   const routes = useRoutes([
     {
@@ -54,12 +55,14 @@ const App = () => {
   const location = useLocation();
 
   const handleClick = (e) => {
-    setMousePos([e.clientX, e.clientY]);
+    if (flag) setMousePos([e.clientX, e.clientY]);
   };
 
   useEffect(() => {
+    setFlag(false);
     setR(200);
     setTimeout(() => setR(0), 1000);
+    setTimeout(() => setFlag(true), 2000);
     return () => setR(200);
   }, [location.pathname]);
 
@@ -69,8 +72,9 @@ const App = () => {
       style={{
         "--radius": r + "vmax",
         "--center": mousePos[0] + "px " + mousePos[1] + "px",
+        "--centerY": mousePos[1] + "px",
       }}
-      onMouseDown={handleClick}
+      onMouseMove={handleClick}
     >
       <Nav isLight={isLight} setIsLight={setIsLight} />
       <AnimatePresence mode="wait">

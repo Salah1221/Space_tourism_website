@@ -150,6 +150,8 @@ const Nav = ({ setIsLight, isLight }) => {
       <button
         className={"theme-toggle " + (isLight ? "dark" : "")}
         onClick={() => setIsLight(!isLight)}
+        title="Dark/Light theme toggler"
+        aria-hidden="true"
       >
         <svg
           width="49"

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Home = ({ setBackgroundClass }) => {
   useEffect(() => {
@@ -41,13 +42,13 @@ const Home = ({ setBackgroundClass }) => {
         }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <a
+        <Link
           to="destination"
           id="main"
           className="large-button uppercase ff-serif text-dark bg-white fs-600"
         >
           Explore
-        </a>
+        </Link>
       </motion.div>
     </main>
   );

@@ -40,42 +40,66 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
         exit={{ scale: 0, opacity: 0 }}
         transition={{ duration: 0.5 }}
       />
-      <motion.div
-        className="destination-info"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 30 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="destination-info">
         <div className="tabs underline-indicators flex m-s-justify-center">
           {destinations.map((destination, i) => (
-            <button
+            <motion.button
               aria-selected={clickedTabs[i] ? "true" : "false"}
               className="uppercase ff-sans-cond text-accent letter-spacing-2"
               onClick={() => handleClick(i)}
               key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.2, delay: 0.1 * i }}
             >
               {destination.name}
-            </button>
+            </motion.button>
           ))}
         </div>
-        <h2 className="fs-800 ff-serif uppercase">{destinations[ind].name}</h2>
-        <p className="text-accent">{destinations[ind].description}</p>
+        <motion.h2
+          className="fs-800 ff-serif uppercase"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          {destinations[ind].name}
+        </motion.h2>
+        <motion.p
+          className="text-accent"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+        >
+          {destinations[ind].description}
+        </motion.p>
         <div className="time-and-distance flex">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+          >
             <h3 className="fs-200 uppercase ff-sans-cond letter-spacing-3 text-accent">
               Avg. Distance
             </h3>
             <p className="ff-serif uppercase">{destinations[ind].distance}</p>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
             <h3 className="fs-200 uppercase ff-sans-cond letter-spacing-3 text-accent">
               Est. travel time
             </h3>
             <p className="ff-serif uppercase">{destinations[ind].travel}</p>
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </main>
   );
 };
