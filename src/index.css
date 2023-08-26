@@ -69,6 +69,21 @@
   }
 }
 
+/* Image Loader */
+
+.loader {
+  animation: blinking 1s infinite;
+}
+
+@keyframes blinking {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* ------------------- */
 /* Reset               */
 /* ------------------- */
@@ -882,7 +897,7 @@ p {
     "content";
 }
 
-.grid-container--destination img {
+.grid-container--destination .img {
   grid-area: image;
   width: clamp(170px, 30.903vw, 445px);
   aspect-ratio: 1;
@@ -935,7 +950,7 @@ p {
   overflow: hidden;
 }
 
-.crew-image img {
+.crew-image .img {
   width: clamp(11rem, 50vw, 35.5rem);
 }
 
@@ -1043,7 +1058,7 @@ p {
         1fr
       );
   }
-  .grid-container--destination img {
+  .grid-container--destination .img {
     margin-left: 2.8rem;
   }
   .destination-info {

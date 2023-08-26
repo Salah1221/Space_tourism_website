@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const Destination = ({ setBackgroundClass, destinations, isLight }) => {
   const [ind, setInd] = useState(0);
   const [clickedTabs, setClickedTabs] = useState([true, false, false, false]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleClick = (index) => {
     setInd(index);
@@ -13,9 +14,22 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
     setClickedTabs(aux);
   };
 
+  let src = isLight
+    ? destinations[ind].images.light
+    : destinations[ind].images.webp;
+
   useEffect(() => {
     setBackgroundClass("destination");
   });
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    setIsLoaded(false);
+    img.onload = () => {
+      setIsLoaded(true);
+    };
+  }, [src]);
 
   return (
     <main className="grid-container grid-container--destination flow">
@@ -28,18 +42,40 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
       >
         <span aria-hidden="true">01</span> pick your destination
       </motion.h1>
-      <motion.img
-        src={
-          isLight
-            ? destinations[ind].images.light
-            : destinations[ind].images.webp
-        }
-        alt={destinations[ind].name}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0, opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      />
+      {isLoaded ? (
+        <motion.img
+          src={src}
+          alt={destinations[ind].name}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.5, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="img"
+          key={src}
+        />
+      ) : (
+        <motion.svg
+          viewBox="0 0 451 451"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="loader img"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <circle
+            cx="222.5"
+            cy="222.5"
+            r="220"
+            fill="hsl(var(--clr-light))"
+            fillOpacity="0.2"
+            stroke="hsl(var(--clr-light))"
+            strokeWidth="5"
+          />
+        </motion.svg>
+      )}
+
       <div className="destination-info">
         <div className="tabs underline-indicators flex m-s-justify-center">
           {destinations.map((destination, i) => (

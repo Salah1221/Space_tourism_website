@@ -1,22 +1,33 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-const Technology = ({ setBackgroundClass, technology, isLight }) => {
-  const width = useSyncExternalStore(
-    (callback) => {
-      window.addEventListener("resize", callback);
-      return () => window.removeEventListener("resize", callback);
-    },
-    () => window.innerWidth
-  );
+const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [ind, setInd] = useState(0);
 
   useEffect(() => {
     setBackgroundClass("technology");
   });
 
-  const [ind, setInd] = useState(0);
+  let src =
+    width < 850
+      ? isLight
+        ? technology[ind].images["landscape-light"]
+        : technology[ind].images.landscape
+      : isLight
+      ? technology[ind].images["portrait-light"]
+      : technology[ind].images.portrait;
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    setIsLoaded(false);
+    img.onload = () => {
+      setIsLoaded(true);
+    };
+  }, [src]);
 
   return (
     <main className="grid-container grid-container--technology flow">
@@ -29,23 +40,63 @@ const Technology = ({ setBackgroundClass, technology, isLight }) => {
       >
         <span aria-hidden="true">03</span> space launch 101
       </motion.h1>
-      <motion.img
-        src={
-          width < 850
-            ? isLight
-              ? technology[ind].images["landscape-light"]
-              : technology[ind].images.landscape
-            : isLight
-            ? technology[ind].images["portrait-light"]
-            : technology[ind].images.portrait
-        }
-        alt={technology[ind].name}
-        className="tech-img"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-        exit={{ opacity: 0 }}
-      />
+      {isLoaded ? (
+        <motion.img
+          src={src}
+          alt={technology[ind].name}
+          className="tech-img"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          exit={{ opacity: 0 }}
+        />
+      ) : width < 850 ? (
+        <svg
+          width="768"
+          height="310"
+          viewBox="0 0 768 310"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0H768V310H0V0Z"
+            fill="hsl(var(--clr-light))"
+            fillOpacity="0.2"
+          />
+          <path d="M0 307H768V310H0V307Z" fill="hsl(var(--clr-light))" />
+          <path d="M0 0H768V3H0V0Z" fill="hsl(var(--clr-light))" />
+        </svg>
+      ) : (
+        <svg
+          width="515"
+          height="537"
+          viewBox="0 0 515 537"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 0H515V537H0V0Z"
+            fill="hsl(var(--clr-light))"
+            fillOpacity="0.2"
+          />
+          <rect x="5" width="510" height="5" fill="hsl(var(--clr-light))" />
+          <rect
+            x="5"
+            y="532"
+            width="510"
+            height="5"
+            fill="hsl(var(--clr-light))"
+          />
+          <rect
+            x="5"
+            width="537"
+            height="4.99998"
+            transform="rotate(90 5 0)"
+            fill="hsl(var(--clr-light))"
+          />
+        </svg>
+      )}
+
       <div className="content flex">
         <div className="num-btns flex fs-600 ff-serif">
           {technology.map((_, i) => (
@@ -100,6 +151,7 @@ Technology.propTypes = {
   setBackgroundClass: PropTypes.func,
   technology: PropTypes.array,
   isLight: PropTypes.bool,
+  width: PropTypes.number,
 };
 
 export default Technology;
