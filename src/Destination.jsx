@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Destination = ({ setBackgroundClass, destinations, isLight }) => {
+const Destination = ({ destinations, isLight }) => {
   const [ind, setInd] = useState(0);
   const [clickedTabs, setClickedTabs] = useState([true, false, false, false]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -17,10 +17,6 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
   let src = isLight
     ? destinations[ind].images.light
     : destinations[ind].images.webp;
-
-  useEffect(() => {
-    setBackgroundClass("destination");
-  });
 
   useEffect(() => {
     const img = new Image();
@@ -58,13 +54,14 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
           viewBox="0 0 451 451"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="loader img"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          className="img"
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
           <circle
+            className="loader"
             cx="222.5"
             cy="222.5"
             r="220"
@@ -141,7 +138,6 @@ const Destination = ({ setBackgroundClass, destinations, isLight }) => {
 };
 
 Destination.propTypes = {
-  setBackgroundClass: PropTypes.func,
   destinations: PropTypes.array,
   isLight: PropTypes.bool,
 };

@@ -3,13 +3,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
+const Technology = ({ technology, isLight, width }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [ind, setInd] = useState(0);
-
-  useEffect(() => {
-    setBackgroundClass("technology");
-  });
 
   let src =
     width < 850
@@ -51,11 +47,14 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
           exit={{ opacity: 0 }}
         />
       ) : width < 850 ? (
-        <svg
+        <motion.svg
           viewBox="0 0 768 310"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="img"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <path
             d="M0 0H768V310H0V0Z"
@@ -65,13 +64,16 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
           />
           <path d="M0 307H768V310H0V307Z" fill="hsl(var(--clr-light))" />
           <path d="M0 0H768V3H0V0Z" fill="hsl(var(--clr-light))" />
-        </svg>
+        </motion.svg>
       ) : (
-        <svg
+        <motion.svg
           viewBox="0 0 515 537"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="img"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <path
             d="M0 0H515V537H0V0Z"
@@ -94,7 +96,7 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
             transform="rotate(90 5 0)"
             fill="hsl(var(--clr-light))"
           />
-        </svg>
+        </motion.svg>
       )}
 
       <div className="content flex">
@@ -109,8 +111,7 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
               animate={{ scale: 1 }}
               transition={{
                 duration: 0.3,
-                delay: 0.1 * i + 0.4,
-                ease: "easeOut",
+                delay: 0.1 * i + 0.3,
               }}
               exit={{ scale: 0 }}
             >
@@ -148,7 +149,6 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
 };
 
 Technology.propTypes = {
-  setBackgroundClass: PropTypes.func,
   technology: PropTypes.array,
   isLight: PropTypes.bool,
   width: PropTypes.number,

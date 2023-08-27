@@ -1,12 +1,7 @@
-import PropTypes from "prop-types";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const Home = ({ setBackgroundClass }) => {
-  useEffect(() => {
-    setBackgroundClass("home");
-  });
+const Home = () => {
   return (
     <main className="grid-container grid-container--home">
       <motion.div
@@ -52,10 +47,6 @@ const Home = ({ setBackgroundClass }) => {
       </motion.div>
     </main>
   );
-};
-
-Home.propTypes = {
-  setBackgroundClass: PropTypes.func,
 };
 
 export default Home;

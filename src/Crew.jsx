@@ -2,13 +2,9 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Crew = ({ setBackgroundClass, crew, isLight, crewPaths }) => {
+const Crew = ({ crew, isLight, crewPaths }) => {
   const [ind, setInd] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setBackgroundClass("crew");
-  });
 
   let src = isLight ? crew[ind].images.light : crew[ind].images.webp;
 
@@ -89,6 +85,7 @@ const Crew = ({ setBackgroundClass, crew, isLight, crewPaths }) => {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0 }}
+            transition={{ delay: 0.4, duration: 0.3 }}
             className="img"
           >
             <path
@@ -107,7 +104,6 @@ const Crew = ({ setBackgroundClass, crew, isLight, crewPaths }) => {
 };
 
 Crew.propTypes = {
-  setBackgroundClass: PropTypes.func,
   crew: PropTypes.array,
   isLight: PropTypes.bool,
   crewPaths: PropTypes.object,
