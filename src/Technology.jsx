@@ -44,7 +44,7 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
         <motion.img
           src={src}
           alt={technology[ind].name}
-          className="tech-img"
+          className="img"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -57,6 +57,7 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
           viewBox="0 0 768 310"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="img"
         >
           <path
             d="M0 0H768V310H0V0Z"
