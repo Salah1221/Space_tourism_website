@@ -52,8 +52,6 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
         />
       ) : width < 850 ? (
         <svg
-          width="768"
-          height="310"
           viewBox="0 0 768 310"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -63,22 +61,23 @@ const Technology = ({ setBackgroundClass, technology, isLight, width }) => {
             d="M0 0H768V310H0V0Z"
             fill="hsl(var(--clr-light))"
             fillOpacity="0.2"
+            className="loader"
           />
           <path d="M0 307H768V310H0V307Z" fill="hsl(var(--clr-light))" />
           <path d="M0 0H768V3H0V0Z" fill="hsl(var(--clr-light))" />
         </svg>
       ) : (
         <svg
-          width="515"
-          height="537"
           viewBox="0 0 515 537"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="img"
         >
           <path
             d="M0 0H515V537H0V0Z"
             fill="hsl(var(--clr-light))"
             fillOpacity="0.2"
+            className="loader"
           />
           <rect x="5" width="510" height="5" fill="hsl(var(--clr-light))" />
           <rect
