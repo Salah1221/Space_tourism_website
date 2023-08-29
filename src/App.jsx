@@ -13,6 +13,7 @@ const App = () => {
   const [r, setR] = useState(0);
   const [mousePos, setMousePos] = useState([0, 0]);
   const [imgSrc, setImgSrc] = useState("none");
+  const [height, setHeight] = useState(0);
 
   const width = useSyncExternalStore(
     (callback) => {
@@ -111,9 +112,10 @@ const App = () => {
     img.src = src;
     img.onload = () => {
       setTimeout(() => {
+        setHeight(document.body.scrollHeight);
         setImgSrc(src);
         setR(0);
-      }, 1000);
+      }, 700);
     };
     return () => setR(200);
   }, [src]);
@@ -126,6 +128,7 @@ const App = () => {
         "--center": mousePos[0] + "px " + mousePos[1] + "px",
         "--centerY": mousePos[1] + "px",
         "--background-image": `url(${imgSrc})`,
+        "--clip-path-height": height + "px",
       }}
       onMouseDown={handleClick}
     >

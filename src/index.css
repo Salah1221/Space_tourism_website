@@ -26,6 +26,7 @@
   --radius: 0vmax;
   --center: 50% 50%;
   --centerY: 50%;
+  --clip-path-height: 100vh;
 }
 
 .light.app {
@@ -37,7 +38,8 @@
 .app::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0 0 auto 0;
+  height: var(--clip-path-height);
   background-color: hsl(var(--clr-dark));
   transition: clip-path 0.7s;
   clip-path: circle(var(--radius) at var(--center));
