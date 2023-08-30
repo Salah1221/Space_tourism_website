@@ -74,13 +74,22 @@ const App = () => {
     {
       path: "destination",
       element: (
-        <Destination isLight={isLight} destinations={data.destinations} />
+        <Destination
+          isLight={isLight}
+          destinations={data.destinations}
+          setHeight={setHeight}
+        />
       ),
     },
     {
       path: "crew",
       element: (
-        <Crew isLight={isLight} crew={data.crew} crewPaths={data.crewPaths} />
+        <Crew
+          isLight={isLight}
+          crew={data.crew}
+          crewPaths={data.crewPaths}
+          setHeight={setHeight}
+        />
       ),
     },
     {
@@ -90,6 +99,7 @@ const App = () => {
           isLight={isLight}
           technology={data.technology}
           width={width}
+          setHeight={setHeight}
         />
       ),
     },

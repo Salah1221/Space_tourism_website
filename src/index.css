@@ -27,6 +27,7 @@
   --center: 50% 50%;
   --centerY: 50%;
   --clip-path-height: 100vh;
+  --disable: initial;
 }
 
 .light.app {
@@ -37,6 +38,7 @@
 
 .app::before {
   content: "";
+  display: var(--disable);
   position: absolute;
   inset: 0 0 auto 0;
   height: var(--clip-path-height);
@@ -1042,5 +1044,134 @@ p {
 @media (min-width: 80rem) {
   .grid-container--technology .content {
     gap: 5rem;
+  }
+}
+
+/* crew navigation buttons */
+
+.crew-image {
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  aspect-ratio: 1;
+  width: 50px;
+  background: none;
+  cursor: pointer;
+  border: 0;
+  opacity: 0.6;
+  transition: transform 0.3s;
+}
+
+.arrow.left {
+  left: 0;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+.arrow.left::before,
+.arrow.left::after,
+.arrow.right::before,
+.arrow.right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 5px;
+  width: 50%;
+  background-color: hsl(var(--clr-light));
+  border-radius: 999px;
+}
+
+.arrow.left::before,
+.arrow.left::after {
+  transform-origin: left center;
+}
+
+.arrow.left::before {
+  transform: translate(-50%, calc(-50% - 1.5px)) rotate(45deg);
+}
+
+.arrow.left::after {
+  transform: translate(-50%, calc(-50% + 1.5px)) rotate(-45deg);
+}
+
+.arrow.left:hover::before {
+  animation: rotate-left-bottom 0.3s;
+}
+
+.arrow.left:hover::after {
+  animation: rotate-left-top 0.3s;
+}
+
+.arrow.right::before,
+.arrow.right::after {
+  transform-origin: right center;
+}
+
+.arrow.right::before {
+  transform: translate(-50%, calc(-50% + 1.5px)) rotate(45deg);
+}
+
+.arrow.right::after {
+  transform: translate(-50%, calc(-50% - 1.5px)) rotate(-45deg);
+}
+
+.arrow.right:hover::before {
+  animation: rotate-right-bottom 0.3s;
+}
+
+.arrow.right:hover::after {
+  animation: rotate-right-top 0.3s;
+}
+
+.arrow.clicked {
+  border: 1px solid;
+}
+
+@keyframes rotate-left-top {
+  50% {
+    transform: translate(calc(-50% - 10px), calc(-50% + 1.5px)) rotate(-35deg);
+  }
+  100% {
+    transform: translate(-50%, calc(-50% + 1.5px)) rotate(-45deg);
+  }
+}
+
+@keyframes rotate-left-bottom {
+  50% {
+    transform: translate(calc(-50% - 10px), calc(-50% - 1.5px)) rotate(35deg);
+  }
+  100% {
+    transform: translate(-50%, calc(-50% - 1.5px)) rotate(45deg);
+  }
+}
+
+@keyframes rotate-right-bottom {
+  50% {
+    transform: translate(calc(-50% + 10px), calc(-50% + 1.5px)) rotate(35deg);
+  }
+  100% {
+    transform: translate(-50%, calc(-50% + 1.5px)) rotate(45deg);
+  }
+}
+
+@keyframes rotate-right-top {
+  50% {
+    transform: translate(calc(-50% + 10px), calc(-50% - 1.5px)) rotate(-35deg);
+  }
+  100% {
+    transform: translate(-50%, calc(-50% - 1.5px)) rotate(-45deg);
+  }
+}
+
+@media (min-width: 50rem) {
+  .arrow {
+    display: none;
   }
 }

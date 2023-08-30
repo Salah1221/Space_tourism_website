@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Destination = ({ destinations, isLight }) => {
+const Destination = ({ destinations, isLight, setHeight }) => {
   const [ind, setInd] = useState(0);
   const [clickedTabs, setClickedTabs] = useState([true, false, false, false]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -17,6 +17,8 @@ const Destination = ({ destinations, isLight }) => {
   let src = isLight
     ? destinations[ind].images.light
     : destinations[ind].images.webp;
+
+  useEffect(() => setHeight(document.body.scrollHeight));
 
   useEffect(() => {
     const img = new Image();
@@ -140,6 +142,7 @@ const Destination = ({ destinations, isLight }) => {
 Destination.propTypes = {
   destinations: PropTypes.array,
   isLight: PropTypes.bool,
+  setHeight: PropTypes.func,
 };
 
 export default Destination;

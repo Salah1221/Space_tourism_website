@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-const Technology = ({ technology, isLight, width }) => {
+const Technology = ({ technology, isLight, width, setHeight }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [ind, setInd] = useState(0);
 
@@ -15,6 +15,8 @@ const Technology = ({ technology, isLight, width }) => {
       : isLight
       ? technology[ind].images["portrait-light"]
       : technology[ind].images.portrait;
+
+  useEffect(() => setHeight(document.body.scrollHeight));
 
   useEffect(() => {
     const img = new Image();
@@ -152,6 +154,7 @@ Technology.propTypes = {
   technology: PropTypes.array,
   isLight: PropTypes.bool,
   width: PropTypes.number,
+  setHeight: PropTypes.func,
 };
 
 export default Technology;

@@ -2,11 +2,13 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Crew = ({ crew, isLight, crewPaths }) => {
+const Crew = ({ crew, isLight, crewPaths, setHeight }) => {
   const [ind, setInd] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
   let src = isLight ? crew[ind].images.light : crew[ind].images.webp;
+
+  useEffect(() => setHeight(document.body.scrollHeight));
 
   useEffect(() => {
     const img = new Image();
@@ -16,6 +18,14 @@ const Crew = ({ crew, isLight, crewPaths }) => {
       setIsLoaded(true);
     };
   }, [src]);
+
+  const handleArrowClick = (direction) => {
+    let aux = ind;
+    aux = aux + direction;
+    if (aux === -1) aux = 3;
+    if (aux === 4) aux = 0;
+    setInd(aux);
+  };
 
   return (
     <main className="grid-container grid-container--crew flow">
@@ -98,6 +108,14 @@ const Crew = ({ crew, isLight, crewPaths }) => {
             />
           </motion.svg>
         )}
+        <button
+          className="arrow left"
+          onClick={() => handleArrowClick(-1)}
+        ></button>
+        <button
+          className="arrow right"
+          onClick={() => handleArrowClick(1)}
+        ></button>
       </div>
     </main>
   );
@@ -107,6 +125,7 @@ Crew.propTypes = {
   crew: PropTypes.array,
   isLight: PropTypes.bool,
   crewPaths: PropTypes.object,
+  setHeight: PropTypes.func,
 };
 
 export default Crew;
