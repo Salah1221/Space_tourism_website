@@ -38,7 +38,6 @@
 
 .app::before {
   content: "";
-  display: var(--disable);
   position: absolute;
   inset: 0 0 auto 0;
   height: var(--clip-path-height);
@@ -1101,11 +1100,11 @@ p {
   transform: translate(-50%, calc(-50% + 1.5px)) rotate(-45deg);
 }
 
-.arrow.left:hover::before {
+.arrow.left.clicked::before {
   animation: rotate-left-bottom 0.3s;
 }
 
-.arrow.left:hover::after {
+.arrow.left.clicked::after {
   animation: rotate-left-top 0.3s;
 }
 
@@ -1122,16 +1121,18 @@ p {
   transform: translate(-50%, calc(-50% - 1.5px)) rotate(-45deg);
 }
 
-.arrow.right:hover::before {
+.arrow.right.clicked::before {
   animation: rotate-right-bottom 0.3s;
 }
 
-.arrow.right:hover::after {
+.arrow.right.clicked::after {
   animation: rotate-right-top 0.3s;
 }
 
-.arrow.clicked {
-  border: 1px solid;
+@media (min-width: 50rem) {
+  .arrow {
+    display: none;
+  }
 }
 
 @keyframes rotate-left-top {
@@ -1173,5 +1174,15 @@ p {
 @media (min-width: 50rem) {
   .arrow {
     display: none;
+  }
+}
+
+@media (min-width: 35rem) {
+  .arrow.left {
+    left: 3rem;
+  }
+
+  .arrow.right {
+    right: 3rem;
   }
 }

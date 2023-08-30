@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 const Crew = ({ crew, isLight, crewPaths, setHeight }) => {
   const [ind, setInd] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [clicked, setClicked] = useState(0);
 
   let src = isLight ? crew[ind].images.light : crew[ind].images.webp;
 
@@ -20,6 +21,8 @@ const Crew = ({ crew, isLight, crewPaths, setHeight }) => {
   }, [src]);
 
   const handleArrowClick = (direction) => {
+    setClicked(direction);
+    setTimeout(() => setClicked(0), 300);
     let aux = ind;
     aux = aux + direction;
     if (aux === -1) aux = 3;
@@ -109,11 +112,11 @@ const Crew = ({ crew, isLight, crewPaths, setHeight }) => {
           </motion.svg>
         )}
         <button
-          className="arrow left"
+          className={`arrow left ${clicked === -1 ? "clicked" : ""}`}
           onClick={() => handleArrowClick(-1)}
         ></button>
         <button
-          className="arrow right"
+          className={`arrow right ${clicked === 1 ? "clicked" : ""}`}
           onClick={() => handleArrowClick(1)}
         ></button>
       </div>
