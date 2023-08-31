@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Home = () => {
+const Home = ({ setIsClicked }) => {
   return (
-    <main className="grid-container grid-container--home">
+    <main
+      className="grid-container grid-container--home"
+      onMouseDown={() => setIsClicked(false)}
+    >
       <motion.div
         className="lg-grid-center"
         initial={{ y: 30, opacity: 0 }}
@@ -47,6 +51,10 @@ const Home = () => {
       </motion.div>
     </main>
   );
+};
+
+Home.propTypes = {
+  setIsClicked: PropTypes.func,
 };
 
 export default Home;

@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Nav = ({ setIsLight, isLight }) => {
+const Nav = ({ setIsLight, isLight, isClicked, setIsClicked }) => {
   const location = useLocation();
-  const [isClicked, SetIsClicked] = useState(false);
   const [areClicked, setAreClicked] = useState([true, false, false, false]);
 
   const linkRef = useRef([]);
@@ -14,7 +13,7 @@ const Nav = ({ setIsLight, isLight }) => {
     aux[index] = true;
     setAreClicked(aux);
     linkRef.current[index].click();
-    SetIsClicked(false);
+    setIsClicked(false);
   };
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const Nav = ({ setIsLight, isLight }) => {
         className="mobile-nav-toggle"
         aria-controls="primary-navigation"
         aria-expanded={isClicked ? "true" : "false"}
-        onClick={() => SetIsClicked(!isClicked)}
+        onClick={() => setIsClicked(!isClicked)}
       >
         <span className="sr-only">Menu</span>
         <svg
@@ -243,6 +242,8 @@ const Nav = ({ setIsLight, isLight }) => {
 Nav.propTypes = {
   isLight: PropTypes.bool,
   setIsLight: PropTypes.func,
+  isClicked: PropTypes.bool,
+  setIsClicked: PropTypes.func,
 };
 
 export default Nav;

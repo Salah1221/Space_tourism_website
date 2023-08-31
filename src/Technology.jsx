@@ -3,7 +3,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-const Technology = ({ technology, isLight, width, setHeight }) => {
+const Technology = ({
+  technology,
+  isLight,
+  width,
+  setHeight,
+  setIsClicked,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [ind, setInd] = useState(0);
 
@@ -28,7 +34,10 @@ const Technology = ({ technology, isLight, width, setHeight }) => {
   }, [src]);
 
   return (
-    <main className="grid-container grid-container--technology flow">
+    <main
+      className="grid-container grid-container--technology flow"
+      onMouseDown={() => setIsClicked(false)}
+    >
       <motion.h1
         className="numbered-title"
         initial={{ y: 20, opacity: 0 }}
@@ -155,6 +164,7 @@ Technology.propTypes = {
   isLight: PropTypes.bool,
   width: PropTypes.number,
   setHeight: PropTypes.func,
+  setIsClicked: PropTypes.func,
 };
 
 export default Technology;

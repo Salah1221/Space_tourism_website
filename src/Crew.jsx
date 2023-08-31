@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Crew = ({ crew, isLight, crewPaths, setHeight }) => {
+const Crew = ({ crew, isLight, crewPaths, setHeight, setIsClicked }) => {
   const [ind, setInd] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(0);
@@ -31,7 +31,10 @@ const Crew = ({ crew, isLight, crewPaths, setHeight }) => {
   };
 
   return (
-    <main className="grid-container grid-container--crew flow">
+    <main
+      className="grid-container grid-container--crew flow"
+      onMouseDown={() => setIsClicked(false)}
+    >
       <motion.h1
         className="numbered-title"
         initial={{ y: 20, opacity: 0 }}
@@ -129,6 +132,7 @@ Crew.propTypes = {
   isLight: PropTypes.bool,
   crewPaths: PropTypes.object,
   setHeight: PropTypes.func,
+  setIsClicked: PropTypes.func,
 };
 
 export default Crew;

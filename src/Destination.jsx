@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Destination = ({ destinations, isLight, setHeight }) => {
+const Destination = ({ destinations, isLight, setHeight, setIsClicked }) => {
   const [ind, setInd] = useState(0);
   const [clickedTabs, setClickedTabs] = useState([true, false, false, false]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,7 +30,10 @@ const Destination = ({ destinations, isLight, setHeight }) => {
   }, [src]);
 
   return (
-    <main className="grid-container grid-container--destination flow">
+    <main
+      className="grid-container grid-container--destination flow"
+      onMouseDown={() => setIsClicked(false)}
+    >
       <motion.h1
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -143,6 +146,7 @@ Destination.propTypes = {
   destinations: PropTypes.array,
   isLight: PropTypes.bool,
   setHeight: PropTypes.func,
+  setIsClicked: PropTypes.func,
 };
 
 export default Destination;
