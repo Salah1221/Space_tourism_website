@@ -65,7 +65,7 @@ Another problem I faced was that when switching tabs in the destination, crew, o
 - A click animation for the theme toggler which is similar to the burger menu icon animation.
 - Transition animations between routes using the Framer Motion animation library.
 - An overlay to hide the background image when switching between routes.
-- Placeholders for all the assets in the destination, crew, and technology pages (except for the background images obviously) that disappear the assets are loaded.
+- Placeholders for all the assets in the destination, crew, and technology pages that disappear when the assets are loaded.
 - Added arrow controls to switch between tabs in the crew page on mobile and tablet, since switching tabs using the dot indicators is frustrating on mobile devices.
 
 ### Useful resources
