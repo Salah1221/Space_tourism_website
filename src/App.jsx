@@ -125,7 +125,7 @@ const App = () => {
         setHeight(document.body.scrollHeight);
         setImgSrc(src);
         setR(0);
-      }, 700);
+      }, 1000);
     };
     return () => setR(200);
   }, [src]);
