@@ -448,7 +448,8 @@ p {
   background: none;
   border: 0;
   position: absolute;
-  top: 66px;
+  top: calc(2.125rem + 2.656rem);
+  transform: translateY(-33%);
   right: 2rem;
   z-index: 9999999;
   cursor: pointer;
@@ -612,6 +613,7 @@ p {
     position: absolute;
     top: 1.45rem;
     right: 5rem;
+    transform: none;
   }
 
   .app::before {
@@ -634,8 +636,9 @@ p {
     display: none;
   }
   .theme-toggle {
-    top: 21px;
+    top: 1.313rem;
     right: 2rem;
+    transform: none;
   }
 }
 

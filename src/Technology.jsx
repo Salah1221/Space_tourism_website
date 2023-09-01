@@ -9,12 +9,13 @@ const Technology = ({
   width,
   setHeight,
   setIsClicked,
+  rootFont,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [ind, setInd] = useState(0);
 
   let src =
-    width < 850
+    width < 57.625 * rootFont
       ? isLight
         ? technology[ind].images["landscape-light"]
         : technology[ind].images.landscape
@@ -165,6 +166,7 @@ Technology.propTypes = {
   width: PropTypes.number,
   setHeight: PropTypes.func,
   setIsClicked: PropTypes.func,
+  rootFont: PropTypes.number,
 };
 
 export default Technology;

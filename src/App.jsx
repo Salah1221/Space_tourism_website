@@ -16,6 +16,10 @@ const App = () => {
   const [height, setHeight] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
 
+  const rootFont = parseFloat(
+    window.getComputedStyle(document.body, null).getPropertyValue("font-size")
+  );
+
   const width = useSyncExternalStore(
     (callback) => {
       window.addEventListener("resize", callback);
@@ -102,6 +106,7 @@ const App = () => {
           isLight={isLight}
           technology={data.technology}
           width={width}
+          rootFont={rootFont}
           setHeight={setHeight}
           setIsClicked={setIsClicked}
         />
@@ -117,7 +122,11 @@ const App = () => {
 
   let src =
     backgrounds[isLight ? "light" : "dark"][
-      width > 800 ? "desktop" : width > 560 ? "tablet" : "mobile"
+      width > 57.625 * rootFont
+        ? "desktop"
+        : width > 37.5 * rootFont
+        ? "tablet"
+        : "mobile"
     ][location.pathname === "/" ? "home" : location.pathname.substring(1)];
 
   useEffect(() => {
