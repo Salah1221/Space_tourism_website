@@ -449,7 +449,7 @@ p {
   border: 0;
   position: absolute;
   top: calc(2.125rem + 2.656rem);
-  transform: translateY(-33%);
+  transform: translateY(-29%);
   right: 2rem;
   z-index: 9999999;
   cursor: pointer;
